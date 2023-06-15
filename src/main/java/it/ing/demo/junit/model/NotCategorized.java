@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Truck extends Vehicle {
+public class NotCategorized extends Vehicle{
 
 
-    public Truck(VehicleEngine vehicleEngine, BrandName brandName, int horsePower, String licensePlate) {
+    public NotCategorized(VehicleEngine vehicleEngine, BrandName brandName, int horsePower, String licensePlate) {
         super(vehicleEngine, brandName, horsePower, licensePlate);
     }
 }

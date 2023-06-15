@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 public class CityCar extends Vehicle {
 
-    public CityCar(VehicleEngine vehicleEngine, BrandName brandName, int horsePower) {
-        super(vehicleEngine, brandName, horsePower);
+
+    public CityCar(VehicleEngine vehicleEngine, BrandName brandName, int horsePower, String licensePlate) {
+        super(vehicleEngine, brandName, horsePower, licensePlate);
     }
 }

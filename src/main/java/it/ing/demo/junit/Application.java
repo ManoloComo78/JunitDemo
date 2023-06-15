@@ -2,7 +2,7 @@ package it.ing.demo.junit;
 
 import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
-import it.ing.demo.junit.model.Car;
+import it.ing.demo.junit.model.NotCategorized;
 import it.ing.demo.junit.model.Vehicle;
 import it.ing.demo.junit.service.VehicleRegistration;
 import it.ing.demo.junit.service.VehicleRegistrationImpl;
@@ -19,13 +19,14 @@ public class Application {
     public static void main(String[] args) {
 
         List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add(new Car(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_FIAT, 150));
-        vehicles.add(new Car(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_TOYOTA, 50));
-        vehicles.add(new Car(VehicleEngine.ENGINE_ELECTRIC, BrandName.BRAND_FIAT, 90));
-        vehicles.add(new Car(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_FERRARI, 1000));
-        vehicles.add(new Car(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_FIAT, 500));
-        vehicles.add(new Car(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_TOYOTA, 250));
-        vehicles.add(new Car(VehicleEngine.ENGINE_DIESEL, null, 250));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_FIAT, 150, "AA 001 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_TOYOTA, 50, "AA 002 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_ELECTRIC, BrandName.BRAND_FIAT, 90, "AA 003 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_FERRARI, 1000, "AA 004 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_FIAT, 500, "AA 005 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_TOYOTA, 250, "AA 006 AA"));
+        vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, null, 250, "AA 007 AA"));
+        vehicles.add(new NotCategorized(null, null, 0, "AA 007 AA"));
 
         VehicleRegistration vehicleRegistration = new VehicleRegistrationImpl();
         List<Vehicle> approveVehicles = vehicleRegistration.approveVehicles(vehicles);

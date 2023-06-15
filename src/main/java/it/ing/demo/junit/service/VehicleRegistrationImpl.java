@@ -2,20 +2,17 @@ package it.ing.demo.junit.service;
 
 import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
-import it.ing.demo.junit.model.Car;
-import it.ing.demo.junit.model.SuperCar;
-import it.ing.demo.junit.model.Truck;
-import it.ing.demo.junit.model.Vehicle;
+import it.ing.demo.junit.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleRegistrationImpl implements VehicleRegistration {
 
-    public static final String CAR = "I am a normal car %s with engine %s";
-    public static final String CITYCAR = "I am a small city car %s with engine %s";
-    public static final String SUPERCAR = "I am a fantastic supercar %s with engine %s";
-    public static final String TRUCK = "I am a working machine %s with engine %s";
+    public static final String UNCATEGORIZED = "I am a uncategorized vehicle with license plate %s";
+    public static final String CITYCAR = "I am a small city car %s with engine %s with %s CV";
+    public static final String SUPERCAR = "I am a fantastic supercar %s with engine %s with %s CV";
+    public static final String TRUCK = "I am a working machine %s with engine %s with %s CV";
 
     @Override
     public List<Vehicle> approveVehicles(List<Vehicle> vehicles) {
@@ -25,26 +22,28 @@ public class VehicleRegistrationImpl implements VehicleRegistration {
 
         List<Vehicle> approvedVehicles = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
-            if (vehicle.getHorsePower() >= 200 && vehicle.getVehicleEngine() != VehicleEngine.ENGINE_DIESEL && vehicle.getBrandName().equals(BrandName.BRAND_FERRARI)) {
-                SuperCar superCar = new SuperCar(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower());
-                String label = String.format(SUPERCAR, superCar.getBrandName().getValue(), superCar.getVehicleEngine().getValue());
+            if ((vehicle.getVehicleEngine() != null) && (vehicle.getBrandName() != null) && vehicle.getHorsePower() >= 200 && vehicle.getVehicleEngine() != VehicleEngine.ENGINE_DIESEL && vehicle.getBrandName().equals(BrandName.BRAND_FERRARI)) {
+                SuperCar superCar = new SuperCar(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower(), vehicle.getLicensePlate());
+                String label = String.format(SUPERCAR, superCar.getBrandName().getValue(), superCar.getVehicleEngine().getValue(), superCar.getHorsePower(), superCar.getHorsePower());
                 superCar.setLabel(label);
                 approvedVehicles.add(superCar);
-            } else if (vehicle.getHorsePower() >= 100 && vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_DIESEL)) {
-                Truck truck = new Truck(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower());
-                String label = String.format(TRUCK, truck.getBrandName().getValue(), truck.getVehicleEngine().getValue());
+            } else if ((vehicle.getVehicleEngine() != null) && (vehicle.getBrandName() != null) && vehicle.getHorsePower() >= 100 && vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_DIESEL)) {
+                Truck truck = new Truck(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower(), vehicle.getLicensePlate());
+                String label = String.format(TRUCK, truck.getBrandName().getValue(), truck.getVehicleEngine().getValue(), truck.getHorsePower(), truck.getHorsePower());
                 truck.setLabel(label);
                 approvedVehicles.add(truck);
-            } else if (vehicle.getHorsePower() < 100 && (vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_ELECTRIC) || vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_HYBRID)) && !vehicle.getBrandName().equals(BrandName.BRAND_FERRARI)) {
-                Truck truck = new Truck(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower());
-                String label = String.format(CITYCAR, truck.getBrandName().getValue(), truck.getVehicleEngine().getValue());
-                truck.setLabel(label);
-                approvedVehicles.add(truck);
+            } else if ((vehicle.getVehicleEngine() != null) && (vehicle.getBrandName() != null) && vehicle.getHorsePower() < 100 && (vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_ELECTRIC) || vehicle.getVehicleEngine().equals(VehicleEngine.ENGINE_HYBRID)) && !vehicle.getBrandName().equals(BrandName.BRAND_FERRARI)) {
+                CityCar cityCar = new CityCar(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower(), vehicle.getLicensePlate());
+                String label = String.format(CITYCAR, cityCar.getBrandName().getValue(), cityCar.getVehicleEngine().getValue(), vehicle.getHorsePower());
+                cityCar.setLabel(label);
+                approvedVehicles.add(cityCar);
             } else {
-                Car car = new Car(vehicle.getVehicleEngine(), vehicle.getBrandName(), vehicle.getHorsePower());
-                String label = String.format(CAR, car.getBrandName().getValue(), car.getVehicleEngine().getValue());
-                car.setLabel(label);
-                approvedVehicles.add(car);
+                VehicleEngine vehicleEngine = vehicle.getVehicleEngine() != null ? vehicle.getVehicleEngine() : VehicleEngine.NO_ENGINE;
+                BrandName brandName = vehicle.getBrandName() != null ? vehicle.getBrandName() : BrandName.NO_BRAND;
+                NotCategorized notCategorized = new NotCategorized(vehicleEngine, brandName, vehicle.getHorsePower(), vehicle.getLicensePlate());
+                String label = String.format(UNCATEGORIZED, vehicle.getLicensePlate());
+                notCategorized.setLabel(label);
+                approvedVehicles.add(notCategorized);
             }
         }
         return approvedVehicles;

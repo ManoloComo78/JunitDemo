@@ -12,11 +12,13 @@ public class Vehicle {
     private VehicleEngine vehicleEngine;
     private BrandName brandName;
     private int horsePower;
+    private String licensePlate;
     private String label;
 
-    public Vehicle(VehicleEngine vehicleEngine, BrandName brandName, int horsePower) {
+    public Vehicle(VehicleEngine vehicleEngine, BrandName brandName, int horsePower, String licensePlate) {
         this.vehicleEngine = vehicleEngine;
         this.brandName = brandName;
         this.horsePower = horsePower;
+        this.licensePlate = licensePlate;
     }
 }
