@@ -2,7 +2,6 @@ package it.ing.demo.junit.model;
 
 import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +19,14 @@ public class Vehicle {
         this.brandName = brandName;
         this.horsePower = horsePower;
         this.licensePlate = licensePlate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Vehicle)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

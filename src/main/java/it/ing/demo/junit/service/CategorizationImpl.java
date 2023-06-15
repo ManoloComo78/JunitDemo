@@ -4,11 +4,18 @@ import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.Labels;
 import it.ing.demo.junit.enums.VehicleEngine;
 import it.ing.demo.junit.model.*;
+import it.ing.demo.junit.util.CarValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategorizationImpl implements Categorization {
+
+    private final  CarValidator carValidator;
+
+    public CategorizationImpl(CarValidator carValidator) {
+        this.carValidator = carValidator;
+    }
 
     @Override
     public List<Vehicle> categorize(List<Vehicle> vehicles) {
