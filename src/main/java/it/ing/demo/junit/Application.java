@@ -29,9 +29,9 @@ public class Application {
         vehicles.add(new NotCategorized(null, null, 0, "AA 008 AA"));
 
         Categorization categorization = new CategorizationImpl();
-        List<Vehicle> approveVehicles = categorization.categorize(vehicles);
+        List<Vehicle> checkedVehicles = categorization.categorize(vehicles);
 
-        for (Vehicle vehicle : approveVehicles) {
+        for (Vehicle vehicle : checkedVehicles) {
             log.info(vehicle.getLabel());
         }
     }
