@@ -4,8 +4,8 @@ import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
 import it.ing.demo.junit.model.NotCategorized;
 import it.ing.demo.junit.model.Vehicle;
-import it.ing.demo.junit.service.VehicleRegistration;
-import it.ing.demo.junit.service.VehicleRegistrationImpl;
+import it.ing.demo.junit.service.Categorization;
+import it.ing.demo.junit.service.CategorizationImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,10 +26,10 @@ public class Application {
         vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_FIAT, 500, "AA 005 AA"));
         vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, BrandName.BRAND_TOYOTA, 250, "AA 006 AA"));
         vehicles.add(new NotCategorized(VehicleEngine.ENGINE_DIESEL, null, 250, "AA 007 AA"));
-        vehicles.add(new NotCategorized(null, null, 0, "AA 007 AA"));
+        vehicles.add(new NotCategorized(null, null, 0, "AA 008 AA"));
 
-        VehicleRegistration vehicleRegistration = new VehicleRegistrationImpl();
-        List<Vehicle> approveVehicles = vehicleRegistration.approveVehicles(vehicles);
+        Categorization categorization = new CategorizationImpl();
+        List<Vehicle> approveVehicles = categorization.categorize(vehicles);
 
         for (Vehicle vehicle : approveVehicles) {
             log.info(vehicle.getLabel());
