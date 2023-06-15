@@ -20,13 +20,4 @@ public class Vehicle {
         this.horsePower = horsePower;
         this.licensePlate = licensePlate;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Vehicle)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 }
