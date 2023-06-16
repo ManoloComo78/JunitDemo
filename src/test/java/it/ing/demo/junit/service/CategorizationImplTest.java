@@ -1,6 +1,5 @@
 package it.ing.demo.junit.service;
 
-import com.flextrade.jfixture.JFixture;
 import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
 import it.ing.demo.junit.model.*;
@@ -13,11 +12,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static com.flextrade.jfixture.FixtureAnnotations.initFixtures;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @ExtendWith(MockitoExtension.class)
 class CategorizationImplTest {
 
@@ -34,7 +32,7 @@ class CategorizationImplTest {
     }
 
     @Test
-    void testCategorize_Success() {
+    void testCategorizeAll_Success() {
         vehicles.add(new Vehicle(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_FIAT, 150, "AA 001 AA"));
         vehicles.add(new Vehicle(VehicleEngine.ENGINE_HYBRID, BrandName.BRAND_TOYOTA, 50, "AA 002 AA"));
         vehicles.add(new Vehicle(VehicleEngine.ENGINE_ELECTRIC, BrandName.BRAND_FIAT, 90, "AA 003 AA"));

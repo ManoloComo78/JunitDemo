@@ -2,7 +2,6 @@ package it.ing.demo.junit;
 
 import it.ing.demo.junit.enums.BrandName;
 import it.ing.demo.junit.enums.VehicleEngine;
-import it.ing.demo.junit.model.NotCategorized;
 import it.ing.demo.junit.model.Vehicle;
 import it.ing.demo.junit.service.Categorization;
 import it.ing.demo.junit.service.CategorizationImpl;
@@ -33,7 +32,7 @@ public class Application {
         List<Vehicle> checkedVehicles = categorization.categorize(vehicles);
 
         for (Vehicle vehicle : checkedVehicles) {
-            log.info(vehicle.getLabel());
+            log.info(vehicle.toString());
         }
     }
 }

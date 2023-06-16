@@ -12,7 +12,6 @@ public class Vehicle {
     private BrandName brandName;
     private int horsePower;
     private String licensePlate;
-    private String label;
 
     public Vehicle(VehicleEngine vehicleEngine, BrandName brandName, int horsePower, String licensePlate) {
         this.vehicleEngine = vehicleEngine;
